@@ -1,5 +1,5 @@
   var ros = new ROSLIB.Ros({
-    url : 'wss://10.7.16.70:11311'
+    url : 'ws://0.0.0.0:9090'
   });
 
   ros.on('connection', function() {
