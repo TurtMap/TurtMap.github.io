@@ -1,37 +1,28 @@
-## Welcome to GitHub Pages
+## Vision Statement
+TurtMap uses a single TurtleBot *UGV* to trace the geography of a location and display the map to users. The requests originate from a web application that allows users to begin the process of mapping the *UGV*’s environment. The incoming request is then handled by a paired *UGV* and the application informs the user that the *UGV* is busy mapping. When the *UGV* is finished tracing the map, it sends the *SLAM* map to the mobile application, where it is then displayed to the user. Usage examples include military personnel having more detailed insights on an environment before entering.
 
-You can use the [editor on GitHub](https://github.com/TurtMap/TurtMap.github.io/edit/main/README.md) to maintain and preview the content for your website in Markdown files.
+## Use Cases for TurtMap
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### Main Use Case
+| Use Case      | Description      |
+| ------------- |-------------     |
+| UC1           | Autonomous Mapping of Environment |
 
-### Markdown
+### Supporting Use Cases
+| Use Case      | Description      |
+| ------------- |-------------     |
+| SC1           | Activate TurtleBot Remotely |
+| SC2           | Collect and Publish Mapping  |
+| SC3           | End Mission  |
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+### General Exception Cases
+| Use Case      | Description      |
+| ------------- |-------------     |
+| EC1           | Loss of Signal |
+| EC2           | Low Battery  |
 
-```markdown
-Syntax highlighted code block
+## Potential Risks
+1. Getting Website to be able to remotely interact with and activate a TurtleBot
+2. Receiving output and mapping back from TurtleBot and projecting that response back onto the website
+3. Getting Error responses that result from either a loss of connection or a low battery warning from the TurtleBot and display to the website
 
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TurtMap/TurtMap.github.io/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
