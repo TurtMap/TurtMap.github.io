@@ -14,6 +14,26 @@
     console.log('Connection to websocket server closed.');
   });
 
+  var cmdVel = new ROSLIB.Topic({
+  ros : ros,
+  name : '/cmd_vel',
+  messageType : 'geometry_msgs/Twist'
+  });
+
+  var twist = new ROSLIB.Message({
+  linear : {
+    x : 0.1,
+    y : 0.2,
+    z : 0.3
+  },
+  angular : {
+    x : -0.1,
+    y : -0.2,
+    z : -0.3
+  }
+  });
+  cmdVel.publish(twist);
+
 
 function myFunction() {
     document.getElementById("demo").style.color = "red";
