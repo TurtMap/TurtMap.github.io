@@ -1,0 +1,90 @@
+@font-face {
+    font-family: "Lobster";
+    src: url("../assets/fonts/Lobster-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../assets/fonts/Roboto-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+}
+
+@font-face {
+    font-family: "Roboto";
+    src: url("../assets/fonts/Roboto-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: bold;
+}
+
+.content {
+    position: absolute;
+    width: 305px;
+    height: 460px;
+    left: calc(50% - 305px/2 - 0.5px);
+    top: calc(50% - 460px/2);    
+}
+
+.logo {
+    position: absolute;
+    width: 305px;
+    height: 288px;
+    left: 0px;
+    top: 0px;
+}
+
+.title {
+    position: absolute;
+    width: 165px;
+    height: 37px;
+    left: 70px;
+    top: 288px;
+    
+    font-family: Lobster;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    line-height: 37px;
+    /* identical to box height, or 76% */
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #2E3A46;
+}
+
+.button {
+    position: absolute;
+    width: 250px;
+    height: 50px;
+    left: 28px;
+    top: 410px;
+    
+    border: 2px solid #2E3A46;
+    box-sizing: border-box;
+    border-radius: 25px;
+}
+
+.button-text {
+    position: absolute;
+    width: 146px;
+    height: 37px;
+    left: 52px;
+    top: -18px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 37px;
+    /* identical to box height, or 153% */
+    
+    display: flex;
+    align-items: center;
+    text-align: center;
+    
+    color: #2E3A46;
+}
