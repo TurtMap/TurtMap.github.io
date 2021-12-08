@@ -15,23 +15,57 @@ function moveRobot() {
     console.log('Connection to websocket server closed.');
   });
 
-  var cmdVel = new ROSLIB.Topic({
+    var cmdVel = new ROSLIB.Topic({
   ros : ros,
   name : '/cmd_vel',
   messageType : 'geometry_msgs/Twist'
   });
 
-  var twist = new ROSLIB.Message({
-  linear : {
-    x : 0.1,
-    y : 0.2,
-    z : 0.3
-  },
-  angular : {
-    x : -0.1,
-    y : -0.2,
-    z : -0.3
-  }
+  var listener = new ROSLIB.Topic ({
+      ros: ros,
+      name : '/scan',
+      messageType : 'sensor_msgs/LaserScan'
   });
-  cmdVel.publish(twist);
+
+  listener.subscribe(function(message) {
+    var ranges = new Array(180).fill(0);
+    for (let i = 0; i < 180; i ++) {
+        if (message.ranges[i+180] == 0) {
+            ranges[i] = 100;
+        }
+        else {
+          ranges[i] = message.ranges[i+ 180];
+        }
+    }
+    var twist = new ROSLIB.Message({
+      linear : {
+        x : 0.0,
+        y : 0.0,
+        z : 0.0
+      },
+      angular : {
+        x : 0.0,
+        y : 0.0,
+        z : 0.0
+      }
+    });
+    var size = ranges.length;
+    var distance = ranges[size - 1];
+    if (distance < 0.4) {
+      twist.linear.x = 0;
+      var decider = Math.random();
+      if (decider < 0.5) {
+        twist.angular.z += 6.28;
+      }
+      else {
+        twist.angular.z -= 6.28;
+      }
+    }
+    else {
+      twist.linear.x = 0.2;
+      twist.angular.z = 0;
+    }
+    cmdVel.publish(twist);
+
+  });
 }
