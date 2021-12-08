@@ -71,6 +71,7 @@ function startRobot() {
     cmdVel.publish(twist);
 
   });
+listener.unsubscribe()
 }
 
 function stopRobot() {
