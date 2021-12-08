@@ -1,4 +1,7 @@
-function moveRobot() {
+var moving = false;
+
+function startRobot() {
+  document.getElementById("state").innerHTML = "Stop";
   var ros = new ROSLIB.Ros({
     url : 'ws://10.7.16.70:9090'
   });
@@ -69,8 +72,10 @@ function moveRobot() {
 
   });
 }
+
 function stopRobot() {
-   var ros = new ROSLIB.Ros({
+  document.getElementById("state").innerHTML = "Start";
+  var ros = new ROSLIB.Ros({
    url : 'ws://10.7.16.70:9090'
   });
 
@@ -105,4 +110,14 @@ function stopRobot() {
   });
 
   cmdVel.publish(twist);
+}
+
+function robotMessage() {
+  if (moving) {
+    stopRobot();
+    moving = false;
+  } else {
+    startRobot();
+    moving = true;
+  }
 }
