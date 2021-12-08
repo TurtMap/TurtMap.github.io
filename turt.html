@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/turtlebot.css">
-    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
-    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+    <link rel="stylesheet" href="css/turt.css">
+    <script type="text/javascript" src="https://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="https://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
     <title>TurtMap</title>
 </head>
 <body>
-    <a href="pair.html">
+    <a href="index.html">
         <img src="images/arrow-right.png" alt="Arrow" class="back">
     </a>
     <h1 class="title">TurtleBot 1</h1>
 
     <img src="images/turtlebot.png" alt="TurtleBot" class="turtlebot">
-    <div class="button">
-        <h3 class="button-text">Start</h3>
-    </div>
+    <button class="button" onclick="myFunction()">
+        <h3 id="state" class="state">Start</h3>
+    </button>
+
+    <!-- Script is added in the end so the elements all load before the script is loaded -->
     <script src="backend.js"></script> 
 </body>
 </html>
