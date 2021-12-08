@@ -68,6 +68,7 @@ function moveRobot() {
     cmdVel.publish(twist);
 
   });
+listener.unsubscribe()
 }
 function stopRobot() {
    var ros = new ROSLIB.Ros({
