@@ -1,3 +1,4 @@
+function moveRobot() {
   var ros = new ROSLIB.Ros({
     url : 'ws://10.7.16.70:9090'
   });
@@ -20,61 +21,17 @@
   messageType : 'geometry_msgs/Twist'
   });
 
-  var listener = new ROSLIB.Topic ({
-      ros: ros,
-      name : '/scan',
-      messageType : 'sensor_msgs/LaserScan'
+  var twist = new ROSLIB.Message({
+  linear : {
+    x : 0.1,
+    y : 0.2,
+    z : 0.3
+  },
+  angular : {
+    x : -0.1,
+    y : -0.2,
+    z : -0.3
+  }
   });
-
-  listener.subscribe(function(message) {
-    var ranges = new Array(180).fill(0);
-    for (let i = 0; i < 180; i ++) {
-        if (message.ranges[i+180] == 0) {
-            ranges[i] = 100;
-        }
-        else {
-          ranges[i] = message.ranges[i+ 180];
-        }
-    }
-    var twist = new ROSLIB.Message({
-      linear : {
-        x : 0.0,
-        y : 0.0,
-        z : 0.0
-      },
-      angular : {
-        x : 0.0,
-        y : 0.0,
-        z : 0.0
-      }
-    });
-    var size = ranges.length;
-    var distance = ranges[size - 1];
-    if (distance < 0.4) {
-      twist.linear.x = 0;
-      var decider = Math.random();
-      if (decider < 0.5) {
-        twist.angular.z += 6.28;
-      }
-      else {
-        twist.angular.z -= 6.28;
-      }
-    }
-    else {
-      twist.linear.x = 0.2;
-      twist.angular.z = 0;
-    }
-    cmdVel.publish(twist);
-
-  });
-
-//  ros.on('shutdown', function() {
-//    twist.linear.x = 0;
-//    twist.angular.z = 0;
-//    cmdVel.publish(twist)
-//  }
-
-function myFunction() {
-    document.getElementById("demo").style.color = "red";
+  cmdVel.publish(twist);
 }
-
