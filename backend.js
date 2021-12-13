@@ -20,15 +20,13 @@ var listener = new ROSLIB.Topic ({
     messageType : 'sensor_msgs/LaserScan'
 });
 
-var moving = false;
-
 function startRobot() {
-  document.getElementById("state").innerHTML = "Stop";
+  document.getElementById("start").style.display = "none";document.getElementById("stop").style.display = "block";
   
-    var cmdVel = new ROSLIB.Topic({
-  ros : ros,
-  name : '/cmd_vel',
-  messageType : 'geometry_msgs/Twist'
+  var cmdVel = new ROSLIB.Topic({
+    ros : ros,
+    name : '/cmd_vel',
+    messageType : 'geometry_msgs/Twist'
   });
 
  
@@ -77,7 +75,6 @@ function startRobot() {
 
 function stopRobot() {
   listener.unsubscribe()
-  document.getElementById("state").innerHTML = "Start";
 
   var cmdVel = new ROSLIB.Topic({
   ros : ros,
@@ -99,14 +96,4 @@ function stopRobot() {
   });
 
   cmdVel.publish(twist);
-}
-
-function robotMessage() {
-  if (moving) {
-    stopRobot();
-    moving = false;
-  } else {
-    startRobot();
-    moving = true;
-  }
 }

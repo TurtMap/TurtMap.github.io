@@ -10,15 +10,20 @@
     <title>TurtMap</title>
 </head>
 <body>
-    <a href="index.html">
+    <a href="/">
         <img src="images/arrow-right.png" alt="Arrow" class="back">
     </a>
     <h1 class="title">TurtleBot 1</h1>
 
     <img src="images/turtlebot.png" alt="TurtleBot" class="turtlebot">
-    <button class="button" onclick="robotMessage()">
-        <h3 id="state" class="state">Start</h3>
+    <button id="start" class="button" onclick="startRobot()">
+        <h3 class="state">Start</h3>
     </button>
+    <a href="visualzation.html">
+        <button id="stop" class="button" style="display: none;" onclick="stopRobot()">
+            <h3 class="state">Stop</h3>
+        </button>
+    </a>
 
     <!-- Script is added in the end so the elements all load before the script is loaded -->
     <script src="backend.js"></script> 
