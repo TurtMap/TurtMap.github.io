@@ -3,7 +3,7 @@ var moving = false;
 function startRobot() {
   document.getElementById("state").innerHTML = "Stop";
   var ros = new ROSLIB.Ros({
-    url : 'ws://10.7.16.70:9090'
+    url : 'wss://10.7.16.70:9090'
   });
 
   ros.on('connection', function() {
