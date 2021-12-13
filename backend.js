@@ -60,10 +60,10 @@ function startRobot() {
       twist.linear.x = 0;
       var decider = Math.random();
       if (decider < 0.5) {
-        twist.angular.z += 6.28;
+        twist.angular.z += 8.40;
       }
       else {
-        twist.angular.z -= 6.28;
+        twist.angular.z -= 8.40;
       }
     }
     else {
