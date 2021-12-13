@@ -1,35 +1,37 @@
+var ros = new ROSLIB.Ros({
+ url : 'ws://10.7.16.70:9090'
+});
+
+ros.on('connection', function() {
+  console.log('Connected to websocket server.');
+});
+
+ros.on('error', function(error) {
+  console.log('Error connecting to websocket server: ', error);
+});
+
+ros.on('close', function() {
+  console.log('Connection to websocket server closed.');
+});
+
+var listener = new ROSLIB.Topic ({
+    ros: ros,
+    name : '/scan',
+    messageType : 'sensor_msgs/LaserScan'
+});
+
 var moving = false;
 
 function startRobot() {
   document.getElementById("state").innerHTML = "Stop";
-  var ros = new ROSLIB.Ros({
-    url : 'ws://10.7.16.70:9090'
-  });
-
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
-
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
-
+  
     var cmdVel = new ROSLIB.Topic({
   ros : ros,
   name : '/cmd_vel',
   messageType : 'geometry_msgs/Twist'
   });
 
-  var listener = new ROSLIB.Topic ({
-      ros: ros,
-      name : '/scan',
-      messageType : 'sensor_msgs/LaserScan'
-  });
-
+ 
   listener.subscribe(function(message) {
     var ranges = new Array(180).fill(0);
     for (let i = 0; i < 180; i ++) {
@@ -71,26 +73,12 @@ function startRobot() {
     cmdVel.publish(twist);
 
   });
-listener.unsubscribe()
 }
 
 function stopRobot() {
+  listener.unsubscribe()
   document.getElementById("state").innerHTML = "Start";
-  var ros = new ROSLIB.Ros({
-   url : 'ws://10.7.16.70:9090'
-  });
 
-  ros.on('connection', function() {
-    console.log('Connected to websocket server.');
-  });
-
-  ros.on('error', function(error) {
-    console.log('Error connecting to websocket server: ', error);
-  });
-
-  ros.on('close', function() {
-    console.log('Connection to websocket server closed.');
-  });
   var cmdVel = new ROSLIB.Topic({
   ros : ros,
   name : '/cmd_vel',
